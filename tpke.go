@@ -31,6 +31,10 @@ func (c *CipherText) Clone() CipherText {
 	}
 }
 
+type DecryptionShare struct {
+	G1 *bls.G1Projective
+}
+
 func SetUp(t, p int) {
 
 }

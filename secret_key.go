@@ -66,3 +66,10 @@ func (sks *SecretKeySet) keyShare(i int) *SecretKeyShare {
 type SecretKeyShare struct {
 	sk *SecretKey
 }
+
+func (sks *SecretKeyShare) DecryptShare(ct CipherText) *DecryptionShare {
+	// TODO : verify
+	return &DecryptionShare {
+		G1: ct.U.ToAffine().Mul(sks.sk.FQ.ToRepr()),
+	}
+}

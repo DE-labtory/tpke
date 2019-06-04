@@ -40,3 +40,7 @@ func xorHash(g1 bls.G1Projective, msg []byte) ([]byte, error) {
 
 	return result, nil
 }
+
+func Interpolate() {
+
+}

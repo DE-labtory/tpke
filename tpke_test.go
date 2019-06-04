@@ -9,9 +9,16 @@ type playGround struct {
 	pkSet *PublicKeySet
 }
 
-
 func (pg *playGround) publishPubKey() *PublicKey {
 	return pg.pkSet.PublicKey()
+}
+
+func (pg *playGround) startDecMeeting() *decryptionMeeting {
+	return &decryptionMeeting {
+		pkSet: *pg.pkSet.Clone(),
+		cipherText: nil,
+		decShares: make(map[int]*DecryptionShare),
+	}
 }
 
 type actor struct {
@@ -21,8 +28,25 @@ type actor struct {
 	receivedMsg CipherText
 }
 
-func sendMessage(id int, ct CipherText) {
+type decryptionMeeting struct {
+	pkSet PublicKeySet
+	cipherText *CipherText
+	decShares map[int]*DecryptionShare
+}
 
+func (dm *decryptionMeeting) acceptDecShare(a actor) {
+	cipherText := a.receivedMsg
+	decShare := a.skShare.DecryptShare(cipherText)
+	dm.decShares[a.id] = decShare
+}
+
+func (dm *decryptionMeeting) decrypt() []byte {
+	cipherText := dm.cipherText.Clone()
+	return dm.pkSet.Decrypt(dm.decShares, &cipherText)
+}
+
+func sendMessage(a *actor, ct CipherText) {
+	a.receivedMsg = ct
 }
 
 func setUp(t *testing.T) *playGround {
@@ -56,9 +80,16 @@ func TestTPKE(t *testing.T) {
 	msg := []byte("hello world!")
 	cipherText, err := pk.Encrypt(msg)
 
+	sendMessage(&playGround.actors[alice], cipherText.Clone())
+	sendMessage(&playGround.actors[bob], cipherText.Clone())
+	sendMessage(&playGround.actors[clara], cipherText.Clone())
+
 	if err != nil {
 		t.Logf("error : %v", err)
 	}
 
 	t.Logf("cipher text : %v", cipherText)
+
+	meeting := playGround.startDecMeeting()
+	meeting.acceptDecShare(playGround.actors[alice])
 }

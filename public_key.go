@@ -51,6 +51,12 @@ type PublicKeySet struct {
 	commitment *Commitment
 }
 
+func (pks *PublicKeySet) Clone() *PublicKeySet {
+	return &PublicKeySet {
+		commitment: pks.commitment.Clone(),
+	}
+}
+
 func (pks *PublicKeySet) Hash() {
 	// TODO
 }
@@ -74,6 +80,16 @@ func (pks *PublicKeySet) KeyShare(i int) *PublicKeyShare {
 			G1: eval,
 		},
 	}
+}
+
+func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) []byte {
+	samples := make([]*bls.G1Projective, len(ds))
+	i := 0
+	for _, d := range ds {
+		samples[i] = d.G1
+		i++
+	}
+
 }
 
 type PublicKeyShare struct {

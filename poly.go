@@ -70,6 +70,16 @@ type Commitment struct {
 	coeff []*bls.G1Projective
 }
 
+func (c *Commitment) Clone() *Commitment {
+	coeff := make([]*bls.G1Projective, len(c.coeff))
+	for i := range coeff {
+		coeff[i] = c.coeff[i].Copy()
+	}
+	return &Commitment {
+		coeff: coeff,
+	}
+}
+
 func (c *Commitment) degree() int {
 	return len(c.coeff) - 1
 }
