@@ -4,6 +4,7 @@ import (
 	"github.com/DE-labtory/koa/crpyto"
 	"github.com/phoreproject/bls"
 	"github.com/tendermint/tendermint/crypto/xchacha20poly1305"
+	"math/big"
 )
 
 func hashH(g1 bls.G1Projective, msg []byte) bls.G2Projective {
@@ -41,6 +42,60 @@ func xorHash(g1 bls.G1Projective, msg []byte) ([]byte, error) {
 	return result, nil
 }
 
-func Interpolate() {
+func Interpolate(t int, items []*bls.G1Projective) *bls.G1Projective {
+	fqs := make([]bls.FQRepr, t + 1)
+	i := 0
+	for i < t + 1 {
+		fq, _ := bls.FQReprFromBigInt(big.NewInt(int64(i + 1)))
+		fqs[i] = fq
+		i++
+	}
+	if t == 0 {
+		return items[0]
+	}
 
+	tmp := bls.FQOne
+	x_prod := make([]bls.FQRepr, t)
+	x_prod[0] = tmp.ToRepr()
+	i = 1
+	for i <= t {
+		tmp.MulAssign(bls.FQReprToFQ(fqs[i - 1]))
+		x_prod[i] = tmp.ToRepr()
+		i++
+	}
+
+	tmp = bls.FQOne
+	i = 1
+	for i <= len(items) {
+		tmp.MulAssign(bls.FQReprToFQ(fqs[i - 1]))
+
+		x_prod_fq := bls.FQReprToFQ(x_prod[i])
+		x_prod_fq.MulAssign(tmp)
+		x_prod[i] = x_prod_fq.ToRepr()
+		i++
+	}
+
+	result := bls.G1ProjectiveZero
+	i = 0
+	for i < len(x_prod) {
+		denom := bls.FQOne
+		j := 0
+		x := fqs[i]
+		for j < len(fqs) {
+			x0 := fqs[j]
+			if !x.Equals(x0) {
+				diff := x0.Copy()
+				diffFQ := bls.FQReprToFQ(diff)
+				diffFQ.SubAssign(bls.FQReprToFQ(x))
+				denom.MulAssign(diffFQ)
+			}
+			j++
+		}
+		x_prod_fq := bls.FQReprToFQ(x_prod[i])
+		inversedDenom, _ := denom.Inverse()
+		x_prod_fq.MulAssign(inversedDenom)
+		result.Add(items[i].ToAffine().Mul(x_prod_fq.ToRepr()))
+		i++
+	}
+	return result
 }

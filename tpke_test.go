@@ -17,6 +17,7 @@ func (pg *playGround) startDecMeeting() *decryptionMeeting {
 	return &decryptionMeeting {
 		pkSet: *pg.pkSet.Clone(),
 		cipherText: nil,
+
 		decShares: make(map[int]*DecryptionShare),
 	}
 }
