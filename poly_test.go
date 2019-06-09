@@ -6,20 +6,21 @@ import (
 )
 
 func TestPoly_AddAssign(t *testing.T) {
+	fr1 := bls.FRReprToFR(bls.NewFRRepr(1))
 	poly := &Poly {
-		coeff: []bls.FQ {
-			bls.FQOne,
-			bls.FQOne,
-			bls.FQOne,
+		coeff: []*bls.FR {
+			fr1.Copy(),
+			fr1.Copy(),
+			fr1.Copy(),
 		},
 	}
 	poly2 := &Poly {
-		coeff: []bls.FQ {
-			bls.FQOne,
-			bls.FQOne,
-			bls.FQOne,
-			bls.FQOne,
-			bls.FQOne,
+		coeff: []*bls.FR {
+			fr1.Copy(),
+			fr1.Copy(),
+			fr1.Copy(),
+			fr1.Copy(),
+			fr1.Copy(),
 		},
 	}
 	t.Logf("FQZero : %v", bls.FQZero)

@@ -4,11 +4,13 @@ import (
 	"github.com/DE-labtory/koa/crpyto"
 	"github.com/phoreproject/bls"
 	"github.com/tendermint/tendermint/crypto/xchacha20poly1305"
-	"math/big"
 )
 
-func hashH(g1 bls.G1Projective, msg []byte) bls.G2Projective {
-	k := crpyto.Keccak256(msg)
+func hashG1G2(g1 bls.G1Projective, msg []byte) bls.G2Projective {
+	k := msg
+	if len(msg) > 64 {
+		k = crpyto.Keccak256(msg)
+	}
 	compress := bls.CompressG1(g1.ToAffine())
 	for _, b := range compress {
 		k = append(k, b)
@@ -30,7 +32,7 @@ func xorHash(g1 bls.G1Projective, msg []byte) ([]byte, error) {
 	}
 
 	var out [32]byte
-	result := make([]byte, 32)
+	result := make([]byte, len(msg))
 	nonce := [16]byte{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	xchacha20poly1305.HChaCha20(&out, &nonce, &digest32)
 	idx := 0
@@ -42,60 +44,65 @@ func xorHash(g1 bls.G1Projective, msg []byte) ([]byte, error) {
 	return result, nil
 }
 
-func Interpolate(t int, items []*bls.G1Projective) *bls.G1Projective {
-	fqs := make([]bls.FQRepr, t + 1)
+type Sample struct {
+	fr *bls.FR
+	g1 *bls.G1Projective
+}
+
+func Interpolate(t int, samples []*Sample) (*bls.G1Projective, error) {
 	i := 0
-	for i < t + 1 {
-		fq, _ := bls.FQReprFromBigInt(big.NewInt(int64(i + 1)))
-		fqs[i] = fq
-		i++
-	}
+
 	if t == 0 {
-		return items[0]
+		return samples[0].g1, nil
 	}
 
-	tmp := bls.FQOne
-	x_prod := make([]bls.FQRepr, t)
-	x_prod[0] = tmp.ToRepr()
+	//for i < t + 1 {
+	//	samples[i].fr = bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
+	//	samples[i].g1 = items[i]
+	//	i++
+	//}
+
+	tmp := bls.FRReprToFR(bls.NewFRRepr(1))
+	x_prod := make([]*bls.FR, t + 1)
+	x_prod[0] = tmp.Copy()
 	i = 1
 	for i <= t {
-		tmp.MulAssign(bls.FQReprToFQ(fqs[i - 1]))
-		x_prod[i] = tmp.ToRepr()
+		tmp.MulAssign(samples[i - 1].fr.Copy())
+		x_prod[i] = tmp.Copy()
 		i++
 	}
 
-	tmp = bls.FQOne
-	i = 1
-	for i <= len(items) {
-		tmp.MulAssign(bls.FQReprToFQ(fqs[i - 1]))
-
-		x_prod_fq := bls.FQReprToFQ(x_prod[i])
-		x_prod_fq.MulAssign(tmp)
-		x_prod[i] = x_prod_fq.ToRepr()
-		i++
+	tmp = bls.FRReprToFR(bls.NewFRRepr(1))
+	i = len(samples) - 2
+	j := len(samples) - 1
+	for i >= 0 {
+		tmp.MulAssign(samples[j].fr.Copy())
+		x_prod[i].MulAssign(tmp.Copy())
+		i--
+		j--
 	}
 
 	result := bls.G1ProjectiveZero
 	i = 0
 	for i < len(x_prod) {
-		denom := bls.FQOne
+		denom := bls.FRReprToFR(bls.NewFRRepr(1))
 		j := 0
-		x := fqs[i]
-		for j < len(fqs) {
-			x0 := fqs[j]
+		x := samples[i].fr.Copy()
+		for j < len(samples) {
+			x0 := samples[j].fr
 			if !x.Equals(x0) {
 				diff := x0.Copy()
-				diffFQ := bls.FQReprToFQ(diff)
-				diffFQ.SubAssign(bls.FQReprToFQ(x))
-				denom.MulAssign(diffFQ)
+				diff.SubAssign(x.Copy())
+				denom.MulAssign(diff.Copy())
 			}
 			j++
 		}
-		x_prod_fq := bls.FQReprToFQ(x_prod[i])
-		inversedDenom, _ := denom.Inverse()
-		x_prod_fq.MulAssign(inversedDenom)
-		result.Add(items[i].ToAffine().Mul(x_prod_fq.ToRepr()))
+		l0 := x_prod[i].Copy()
+		inv := denom.Copy().Inverse()
+		l0.MulAssign(inv)
+		adder := samples[i].g1.ToAffine().MulFR(l0.ToRepr())
+		result = result.Add(adder)
 		i++
 	}
-	return result
+	return result, nil
 }

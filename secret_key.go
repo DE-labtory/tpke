@@ -2,23 +2,22 @@ package tpke
 
 import (
 	"github.com/phoreproject/bls"
-	"math/big"
 )
 
 type SecretKey struct {
-	FQ bls.FQ
+	FR *bls.FR
 }
 
 func (s *SecretKey) PublicKey() *PublicKey {
 	return &PublicKey {
-		G1: bls.G1AffineOne.Mul(s.FQ.ToRepr()),
+		G1: bls.G1AffineOne.MulFR(s.FR.ToRepr()),
 	}
 }
 
 func (s *SecretKey) Sign(msg []byte) *Signature {
 	g2Hash := bls.HashG2(msg, 0)
 	return &Signature {
-		G2: g2Hash.Mul(s.FQ.ToRepr()),
+		G2: g2Hash.MulFR(s.FR.ToRepr()),
 	}
 }
 
@@ -26,7 +25,7 @@ func (s *SecretKey) Decrypt(cipher *CipherText) []byte {
 	if !cipher.Verify() {
 		return nil
 	}
-	g := cipher.U.ToAffine().Mul(s.FQ.ToRepr())
+	g := cipher.U.ToAffine().MulFR(s.FR.ToRepr())
 	d, _ := xorHash(*g, cipher.V)
 	return d
 }
@@ -53,12 +52,11 @@ func (sks *SecretKeySet) publicKeySet() *PublicKeySet {
 }
 
 func (sks *SecretKeySet) keyShare(i int) *SecretKeyShare {
-	fqRepr, _ := bls.FQReprFromBigInt(big.NewInt(int64(i + 1)))
-	fq := bls.FQReprToFQ(fqRepr)
-	eval := sks.poly.evaluate(fq)
+	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
+	eval := sks.poly.evaluate(*fr)
 	return &SecretKeyShare {
 		sk: &SecretKey {
-			FQ: eval,
+			FR: eval,
 		},
 	}
 }
@@ -67,9 +65,9 @@ type SecretKeyShare struct {
 	sk *SecretKey
 }
 
-func (sks *SecretKeyShare) DecryptShare(ct CipherText) *DecryptionShare {
+func (sks *SecretKeyShare) DecryptShare(ct *CipherText) *DecryptionShare {
 	// TODO : verify
 	return &DecryptionShare {
-		G1: ct.U.ToAffine().Mul(sks.sk.FQ.ToRepr()),
+		G1: ct.U.ToAffine().MulFR(sks.sk.FR.ToRepr()),
 	}
 }

@@ -2,7 +2,6 @@ package tpke
 
 import (
 	"github.com/phoreproject/bls"
-	"math/big"
 	"math/rand"
 	"time"
 )
@@ -35,7 +34,7 @@ func (p *PublicKey) Encrypt(msg []byte) (*CipherText, error) {
 		return nil, err
 	}
 
-	w := hashH(*u, v).ToAffine().MulFR(r.ToRepr())
+	w := hashG1G2(*u, v).ToAffine().MulFR(r.ToRepr())
 	return &CipherText{
 		U : *u,
 		V : v,
@@ -72,9 +71,8 @@ func (pks *PublicKeySet) PublicKey() *PublicKey {
 }
 
 func (pks *PublicKeySet) KeyShare(i int) *PublicKeyShare {
-	fqRepr, _ := bls.FQReprFromBigInt(big.NewInt(int64(i + 1)))
-	fq := bls.FQReprToFQ(fqRepr)
-	eval := pks.commitment.evaluate(fq)
+	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
+	eval := pks.commitment.evaluate(*fr)
 	return &PublicKeyShare {
 		pk: &PublicKey {
 			G1: eval,
@@ -82,14 +80,20 @@ func (pks *PublicKeySet) KeyShare(i int) *PublicKeyShare {
 	}
 }
 
-func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) []byte {
-	samples := make([]*bls.G1Projective, len(ds))
+func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) ([]byte, error) {
+	//samples := make([]*bls.G1Projective, len(ds))
+	samples := make([]*Sample, len(ds))
 	i := 0
 	for _, d := range ds {
-		samples[i] = d.G1
+		samples[i].fr = bls.FRReprToFR(bls.NewFRRepr(uint64(i)))
+		samples[i].g1 = d.G1
 		i++
 	}
-
+	g, err := Interpolate(pks.commitment.degree(), samples)
+	if err != nil {
+		return nil, err
+	}
+	return xorHash(*g, ct.V)
 }
 
 type PublicKeyShare struct {

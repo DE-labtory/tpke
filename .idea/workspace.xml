@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="639ae4d9-f724-4d12-8643-1809dde72798" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poly.go" beforeDir="false" afterPath="$PROJECT_DIR$/poly.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poly_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/poly_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/public_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/secret_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/secret_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tpke.go" beforeDir="false" afterPath="$PROJECT_DIR$/tpke.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tpke_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tpke_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils.go" afterDir="false" />
     </list>
@@ -24,22 +29,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="148" />
+          <entry key="go" value="161" />
+          <entry key="s" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="148" />
+          <entry key="Go" value="161" />
+          <entry key="x86 Plan9 Assembly" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="20771" />
+          <entry key="go" value="24144" />
+          <entry key="txt" value="60" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="20771" />
+          <entry key="Go" value="24144" />
+          <entry key="PLAIN_TEXT" value="60" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.go.postfix.template.usages.trigger">
@@ -54,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpke.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+            <state relative-caret-position="-84">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#14#32#0" expanded="true" />
               </folding>
@@ -63,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="98" column="5" lean-forward="true" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+            <state relative-caret-position="171">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="e#14#152#0" expanded="true" />
               </folding>
@@ -75,29 +84,38 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fr.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="261" column="16" selection-start-line="261" selection-start-column="16" selection-end-line="261" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/frrepr.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="138" column="17" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpke_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="46" />
+            <state relative-caret-position="284">
+              <caret line="149" selection-start-line="149" selection-end-line="149" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/g2.go">
+        <entry file="file://$PROJECT_DIR$/poly.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-293">
-              <caret line="883" column="5" selection-start-line="883" selection-start-column="5" selection-end-line="883" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/pairing_test.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3032">
-              <caret line="148" column="12" selection-start-line="148" selection-start-column="12" selection-end-line="148" selection-end-column="12" />
+            <state relative-caret-position="372">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
             </state>
           </provider>
         </entry>
@@ -106,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/public_key.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="354">
-              <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+              <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
               <folding>
                 <element signature="e#14#76#0" expanded="true" />
               </folding>
@@ -115,37 +133,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/g1.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/secret_key.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="69" column="61" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+            <state relative-caret-position="236">
+              <caret line="63" column="28" lean-forward="true" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+              <folding>
+                <marker date="1559894624628" expanded="false" signature="412:449" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fq.go">
+        <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/g1.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state relative-caret-position="-122">
+              <caret line="288" column="22" selection-start-line="288" selection-start-column="22" selection-end-line="288" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/poly.go">
+        <entry file="file://$PROJECT_DIR$/poly_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
+            <state relative-caret-position="506">
+              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+              <folding>
+                <element signature="e#14#66#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,6 +191,11 @@
       <find>HashG2</find>
       <find>DecShare</find>
       <find>Mul</find>
+      <find>decrypt</find>
+      <find>inter</find>
+      <find>FQ</find>
+      <find>frOne</find>
+      <find>Inverse</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
@@ -191,13 +211,14 @@
         <option value="$PROJECT_DIR$/../../../go.dedis.ch/kyber/pairing/bn256/suite.go" />
         <option value="$PROJECT_DIR$/util.go" />
         <option value="$PROJECT_DIR$/signature.go" />
-        <option value="$PROJECT_DIR$/poly_test.go" />
-        <option value="$PROJECT_DIR$/poly.go" />
         <option value="$PROJECT_DIR$/tpke.go" />
         <option value="$PROJECT_DIR$/secret_key.go" />
+        <option value="$PROJECT_DIR$/poly_test.go" />
+        <option value="$PROJECT_DIR$/poly.go" />
         <option value="$PROJECT_DIR$/public_key.go" />
-        <option value="$PROJECT_DIR$/tpke_test.go" />
         <option value="$PROJECT_DIR$/utils.go" />
+        <option value="$PROJECT_DIR$/tpke_test.go" />
+        <option value="$PROJECT_DIR$/../../phoreproject/bls/fr.go" />
       </list>
     </option>
   </component>
@@ -233,27 +254,6 @@
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="GOPATH &lt;tpke&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
             </path>
-            <path>
-              <item name="tpke" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;tpke&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tpke" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;tpke&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tpke" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="GOPATH &lt;tpke&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="github.com" type="462c0819:PsiDirectoryNode" />
-              <item name="samkumar" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -281,7 +281,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestTPKE in github.com/DE-labtory/tpke">
+  <component name="RunManager" selected="Go Test.TestInterpolate in github.com/DE-labtory/tpke">
+    <configuration name="TestInterpolate in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="tpke" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/DE-labtory/tpke" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestInterpolate$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestPoly_AddAssign in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="tpke" />
       <working_directory value="$PROJECT_DIR$" />
@@ -291,28 +302,6 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestPoly_AddAssign$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestTE_G12 in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="tpke" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/DE-labtory/tpke" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestTE_G12$" />
-      <method v="2" />
-    </configuration>
-    <configuration name="TestTE_Setup in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="tpke" />
-      <working_directory value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <kind value="PACKAGE" />
-      <package value="github.com/DE-labtory/tpke" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <pattern value="^TestTE_Setup$" />
       <method v="2" />
     </configuration>
     <configuration name="TestTPKE in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -337,53 +326,64 @@
       <pattern value="^TestTTTT$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestXorHash in github.com/DE-labtory/tpke" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="tpke" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/DE-labtory/tpke" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestXorHash$" />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Go Test.TestTE_Setup in github.com/DE-labtory/tpke" />
-      <item itemvalue="Go Test.TestTE_G12 in github.com/DE-labtory/tpke" />
       <item itemvalue="Go Test.TestPoly_AddAssign in github.com/DE-labtory/tpke" />
       <item itemvalue="Go Test.TestTPKE in github.com/DE-labtory/tpke" />
       <item itemvalue="Go Test.TestTTTT in github.com/DE-labtory/tpke" />
+      <item itemvalue="Go Test.TestXorHash in github.com/DE-labtory/tpke" />
+      <item itemvalue="Go Test.TestInterpolate in github.com/DE-labtory/tpke" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestInterpolate in github.com/DE-labtory/tpke" />
         <item itemvalue="Go Test.TestTPKE in github.com/DE-labtory/tpke" />
+        <item itemvalue="Go Test.TestXorHash in github.com/DE-labtory/tpke" />
         <item itemvalue="Go Test.TestTTTT in github.com/DE-labtory/tpke" />
         <item itemvalue="Go Test.TestPoly_AddAssign in github.com/DE-labtory/tpke" />
-        <item itemvalue="Go Test.TestTE_Setup in github.com/DE-labtory/tpke" />
-        <item itemvalue="Go Test.TestTE_G12 in github.com/DE-labtory/tpke" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.02 at 20h 37m 39s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 17h 33m 27s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTTTT_in_github_com_DE-labtory_tpke - 2019.06.03 at 00h 35m 28s.xml">
-      <configuration name="TestTTTT in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 17h 33m 37s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.03 at 01h 03m 08s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 17h 35m 16s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.03 at 01h 04m 36s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 00m 55s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.03 at 01h 09m 10s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 00m 56s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.04 at 18h 32m 47s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 03m 20s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.04 at 18h 32m 49s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 03m 22s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.04 at 18h 33m 03s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 03m 29s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.04 at 18h 52m 55s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 03m 47s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.04 at 18h 55m 37s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestInterpolate_in_github_com_DE-labtory_tpke - 2019.06.09 at 18h 15m 58s.xml">
+      <configuration name="TestInterpolate in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -405,14 +405,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32987553" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39937758" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39937758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32987553" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32987553" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32987553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -486,7 +486,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/poly_test.go</url>
-          <line>8</line>
+          <line>9</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -495,20 +495,106 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/tpke_test.go</url>
-          <line>74</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/../../../golang.org/x/crypto/chacha20poly1305/chacha20poly1305_generic.go</url>
           <line>44</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/tpke_test.go</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/tpke_test.go</url>
+          <line>75</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/public_key.go</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils.go</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils.go</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils.go</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils.go</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/tpke_test.go</url>
+          <line>149</line>
+          <properties />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/utils.go</url>
+          <line>99</line>
+          <properties />
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/../../phoreproject/bls/fr.go</url>
+          <line>258</line>
+          <properties />
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GoTestRunConfiguration">
+        <watch expression="x_prod[i]" language="go" />
+        <watch expression="samples[i]" language="go" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>samples[i]</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>sample[i]</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>frOne</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>x_prod[i]</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>samples[i].fr</expression-string>
+        <language-id>go</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>*(*&quot;*go.dedis.ch/kyber/pairing/bn256.pointG1&quot;)(824634342544)</expression-string>
         <language-id>go</language-id>
@@ -517,25 +603,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/go/src/hash/hash.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-249">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/crypto/sha256/sha256.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-792">
-          <caret line="227" column="12" lean-forward="true" selection-start-line="227" selection-start-column="12" selection-end-line="227" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/go/src/hash/marshal_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1517" />
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/hash/example_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
@@ -578,13 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/pairing.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/go/src/crypto/cipher/gcm.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -620,13 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/bls.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="133" column="6" lean-forward="true" selection-start-line="133" selection-start-column="6" selection-end-line="133" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/bls_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -653,20 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="133" column="5" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/frrepr.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fr.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-340">
-          <caret line="34" column="4" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -707,16 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/poly_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#14#66#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,13 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/poly.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../samkumar/embedded-pairing/lang/go/bls12381/marshal.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -825,61 +847,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/bls.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2944">
+          <caret line="133" column="6" lean-forward="true" selection-start-line="133" selection-start-column="6" selection-end-line="133" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fq.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5192">
+          <caret line="106" column="27" lean-forward="true" selection-start-line="106" selection-start-column="27" selection-end-line="106" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/pairing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1742">
+          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/runtime/asm_amd64.s">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="1332" selection-start-line="1332" selection-end-line="1332" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/crypto/rand/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="105" column="5" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/secret_key.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="69" column="61" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="61" />
+        <state relative-caret-position="236">
+          <caret line="63" column="28" lean-forward="true" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <marker date="1559894624628" expanded="false" signature="412:449" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poly_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding>
+            <element signature="e#14#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/go/src/testing/testing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="764" selection-start-line="764" selection-end-line="764" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/g1.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="288" column="22" selection-start-line="288" selection-start-column="22" selection-end-line="288" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_key.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
-          <caret line="91" lean-forward="true" selection-start-line="91" selection-end-line="91" />
+          <caret line="90" column="5" lean-forward="true" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
           <folding>
             <element signature="e#14#76#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/frrepr.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="138" column="17" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tpke.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="-84">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#14#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/poly.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tpke_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fq.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="64" column="13" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/g1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
+        <state relative-caret-position="284">
+          <caret line="149" selection-start-line="149" selection-end-line="149" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="98" column="5" lean-forward="true" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+        <state relative-caret-position="171">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="e#14#152#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../phoreproject/bls/fr.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="261" column="16" selection-start-line="261" selection-start-column="16" selection-end-line="261" selection-end-column="16" />
         </state>
       </provider>
     </entry>

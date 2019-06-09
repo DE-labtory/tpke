@@ -11,7 +11,7 @@ type CipherText struct {
 }
 
 func (c *CipherText) Verify() bool {
-	hash := hashH(c.U, c.V)
+	hash := hashG1G2(c.U, c.V)
 	return bls.Pairing(bls.G1ProjectiveOne, &c.W).Equals(bls.Pairing(&c.U, &hash))
 }
 
@@ -19,12 +19,13 @@ func (c *CipherText) Hash() {
 
 }
 
-func (c *CipherText) Clone() CipherText {
+func (c *CipherText) Clone() *CipherText {
 	cloneV := make([]uint8, len(c.V))
 	for i := range cloneV {
 		cloneV[i] = c.V[i]
 	}
-	return CipherText {
+
+	return &CipherText {
 		U: *c.U.Copy(),
 		V: cloneV,
 		W: *c.W.Copy(),
