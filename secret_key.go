@@ -1,7 +1,7 @@
 package tpke
 
 import (
-	"github.com/phoreproject/bls"
+	"github.com/bls"
 )
 
 type SecretKey struct {
@@ -15,7 +15,7 @@ func (s *SecretKey) PublicKey() *PublicKey {
 }
 
 func (s *SecretKey) Sign(msg []byte) *Signature {
-	g2Hash := bls.HashG2(msg, 0)
+	g2Hash := HashG2(msg).ToAffine()
 	return &Signature {
 		G2: g2Hash.MulFR(s.FR.ToRepr()),
 	}
@@ -26,7 +26,8 @@ func (s *SecretKey) Decrypt(cipher *CipherText) []byte {
 		return nil
 	}
 	g := cipher.U.ToAffine().MulFR(s.FR.ToRepr())
-	d, _ := xorHash(*g, cipher.V)
+	//d, _ := xorHash(*g, cipher.V)
+	d := xorHash(*g, cipher.V)
 	return d
 }
 
@@ -35,7 +36,7 @@ type SecretKeySet struct {
 }
 
 func randomSecretKeySet(threshold int) *SecretKeySet {
-	randomPoly := randomPoly(threshold)
+	randomPoly := randomPoly(threshold + 1)
 	return &SecretKeySet{
 		poly: *randomPoly,
 	}
@@ -52,7 +53,10 @@ func (sks *SecretKeySet) publicKeySet() *PublicKeySet {
 }
 
 func (sks *SecretKeySet) keyShare(i int) *SecretKeyShare {
-	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
+	//fr := bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
+	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(1)))
+	x := bls.FRReprToFR(bls.NewFRRepr(uint64(i)))
+	fr.AddAssign(x)
 	eval := sks.poly.evaluate(*fr)
 	return &SecretKeyShare {
 		sk: &SecretKey {
@@ -68,6 +72,6 @@ type SecretKeyShare struct {
 func (sks *SecretKeyShare) DecryptShare(ct *CipherText) *DecryptionShare {
 	// TODO : verify
 	return &DecryptionShare {
-		G1: ct.U.ToAffine().MulFR(sks.sk.FR.ToRepr()),
+		G1: ct.U.ToAffine().MulFR(sks.sk.FR.ToRepr()).Copy(),
 	}
 }

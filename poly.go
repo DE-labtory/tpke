@@ -2,7 +2,7 @@ package tpke
 
 import (
 	"github.com/leesper/go_rng"
-	"github.com/phoreproject/bls"
+	"github.com/bls"
 )
 
 type Poly struct {
@@ -10,7 +10,7 @@ type Poly struct {
 }
 
 func randomPoly(degree int) *Poly {
-	coeff := make([]*bls.FR, degree + 1)
+	coeff := make([]*bls.FR, degree)
 	rng := rng.NewUniformGenerator(int64(degree * 123123421))
 	for i := range coeff {
 		fr:= bls.NewFRRepr(uint64(rng.Int64()))
@@ -22,12 +22,14 @@ func randomPoly(degree int) *Poly {
 }
 
 func (p *Poly) evaluate(x bls.FR) *bls.FR {
-	result := p.coeff[0]
-	for i, c := range p.coeff {
-		if i > 0 {
+	i := len(p.coeff) - 1
+	result := p.coeff[i].Copy()
+	for i >= 0 {
+		if i != len(p.coeff) - 1 {
 			result.MulAssign(&x)
-			result.AddAssign(c)
+			result.AddAssign(p.coeff[i])
 		}
+		i--
 	}
 	return result
 }
@@ -86,12 +88,17 @@ func (c *Commitment) degree() int {
 }
 
 func (c *Commitment) evaluate(x bls.FR) *bls.G1Projective {
-	result := c.coeff[0]
-	for i := range c.coeff {
-		if i > 0 {
-			result.MulFR(x.ToRepr().Copy())
-			result.Add(c.coeff[i].Copy())
+	if len(c.coeff) == 0 {
+		return bls.G1ProjectiveZero
+	}
+	i := len(c.coeff) - 1
+	result := c.coeff[i]
+	for i >= 0 {
+		if i != len(c.coeff) - 1{
+			result = result.MulFR(x.ToRepr())
+			result = result.Add(c.coeff[i])
 		}
+		i--
 	}
 	return result
 }

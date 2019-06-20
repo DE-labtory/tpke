@@ -1,18 +1,21 @@
 package tpke
 
 import (
-	"github.com/phoreproject/bls"
+	"github.com/bls"
 )
 
 type CipherText struct {
 	U bls.G1Projective
-	V []uint8
+	V []byte
 	W bls.G2Projective
 }
 
 func (c *CipherText) Verify() bool {
 	hash := hashG1G2(c.U, c.V)
-	return bls.Pairing(bls.G1ProjectiveOne, &c.W).Equals(bls.Pairing(&c.U, &hash))
+	right := bls.Pairing(c.U.Copy(), hash.ToProjective())
+	left := bls.Pairing(bls.G1ProjectiveOne, &c.W)
+
+	return left.Equals(right)
 }
 
 func (c *CipherText) Hash() {
@@ -20,7 +23,7 @@ func (c *CipherText) Hash() {
 }
 
 func (c *CipherText) Clone() *CipherText {
-	cloneV := make([]uint8, len(c.V))
+	cloneV := make([]byte, len(c.V))
 	for i := range cloneV {
 		cloneV[i] = c.V[i]
 	}

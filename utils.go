@@ -1,47 +1,84 @@
 package tpke
 
 import (
-	"github.com/DE-labtory/koa/crpyto"
-	"github.com/phoreproject/bls"
-	"github.com/tendermint/tendermint/crypto/xchacha20poly1305"
+	"encoding/binary"
+	"errors"
+	"github.com/bls"
+	"golang.org/x/crypto/blake2b"
+	"golang.org/x/crypto/sha3"
 )
 
-func hashG1G2(g1 bls.G1Projective, msg []byte) bls.G2Projective {
-	k := msg
-	if len(msg) > 64 {
-		k = crpyto.Keccak256(msg)
-	}
+func hashG1G2(g1 bls.G1Projective, msg []byte) *bls.G2Affine {
+
+	k := make([]byte, 0)
+
 	compress := bls.CompressG1(g1.ToAffine())
 	for _, b := range compress {
 		k = append(k, b)
 	}
-	return *bls.HashG2(k, 0)
+
+	for _, b := range msg {
+		k = append(k, b)
+	}
+
+	return bls.HashG2(k)
 }
 
-func xorHash(g1 bls.G1Projective, msg []byte) ([]byte, error) {
-	var slice []byte
-	for _, b := range bls.CompressG1(g1.ToAffine()) {
-		slice = append(slice, b)
+func HashG2(msg []byte) *bls.G2Projective {
+	/*//bls.HashG1
+	hasher0 := sha3.New256()
+	//hasher0.Write([]byte("G2_0"))
+	hasher0.Write(msg)
+	//hasher1 := sha3.New256()
+	//hasher1.Write([]byte("G2_1"))
+	//hasher1.Write(msg)
+
+
+	t0 := bls.HashFQ2(hasher0)
+	t0Affine := bls.SWEncodeG2(t0)
+	//t1 := bls.HashFQ2(hasher1)
+	//t1Affine := bls.SWEncodeG2(t1)
+	res := t0Affine.ScaleByCofactor()
+	//res = res.AddAffine(t1Affine)*/
+	domainBytes := [8]byte{}
+	binary.BigEndian.PutUint64(domainBytes[:], 0)
+
+	hasher0, _ := blake2b.New(64, nil)
+	hasher0.Write(domainBytes[:])
+	hasher0.Write([]byte("G2_0"))
+	hasher0.Write(msg)
+	hasher1, _ := blake2b.New(64, nil)
+	hasher1.Write(domainBytes[:])
+	hasher1.Write([]byte("G2_1"))
+	hasher1.Write(msg)
+
+	t0 := bls.HashFQ2(hasher0)
+	t0Affine := bls.SWEncodeG2(t0)
+	t1 := bls.HashFQ2(hasher1)
+	t1Affine := bls.SWEncodeG2(t1)
+
+	res := t0Affine.ToProjective()
+	res = res.AddAffine(t1Affine)
+	return res.ToAffine().ScaleByCofactor()
+}
+
+//func xorHash(g1 bls.G1Projective, msg [32]byte) ([]byte, error) {
+//
+//	for i, _ := range msg {
+//
+//	}
+//}
+
+func xorHash(g1 bls.G1Projective, msg []byte) []byte {
+	slice := bls.CompressG1(g1.ToAffine())
+	hash := sha3.New256()
+	hash.Write(slice[:])
+	hashedG1 := hash.Sum(nil)
+	output := make([]byte, len(msg))
+	for i := range output {
+		output[i] = msg[i] ^ hashedG1[i]
 	}
-
-	var digest32 [32]byte
-	digest := crpyto.Keccak256(slice)
-
-	for i := range digest32 {
-		digest32[i] = digest[i]
-	}
-
-	var out [32]byte
-	result := make([]byte, len(msg))
-	nonce := [16]byte{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
-	xchacha20poly1305.HChaCha20(&out, &nonce, &digest32)
-	idx := 0
-	for i := range msg {
-		result[i] = msg[i] ^ out[idx % 32]
-		idx++
-	}
-
-	return result, nil
+	return output
 }
 
 type Sample struct {
@@ -49,26 +86,35 @@ type Sample struct {
 	g1 *bls.G1Projective
 }
 
-func Interpolate(t int, samples []*Sample) (*bls.G1Projective, error) {
+func Interpolate(t int, inputs []*Sample) (*bls.G1Projective, error) {
 	i := 0
 
-	if t == 0 {
-		return samples[0].g1, nil
+	if len(inputs) <= t {
+		return nil, errors.New("Not enough share")
 	}
 
-	//for i < t + 1 {
-	//	samples[i].fr = bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
-	//	samples[i].g1 = items[i]
-	//	i++
-	//}
+	if t == 0 {
+		return inputs[0].g1.Copy(), nil
+	}
+
+	samples := make([]*Sample, 0)
+	for i < t+1 {
+		samples = append(samples, &Sample{
+			fr: inputs[i].fr.Copy(),
+			g1: inputs[i].g1.Copy(),
+		})
+		i++
+	}
 
 	tmp := bls.FRReprToFR(bls.NewFRRepr(1))
-	x_prod := make([]*bls.FR, t + 1)
-	x_prod[0] = tmp.Copy()
+	//x_prod := make([]*bls.FR, t + 1)
+	x_prod := make([]*bls.FR, 0)
+	x_prod = append(x_prod, tmp.Copy())
 	i = 1
 	for i <= t {
 		tmp.MulAssign(samples[i - 1].fr.Copy())
-		x_prod[i] = tmp.Copy()
+		//x_prod[i] = tmp.Copy()
+		x_prod = append(x_prod, tmp.Copy())
 		i++
 	}
 
@@ -98,7 +144,7 @@ func Interpolate(t int, samples []*Sample) (*bls.G1Projective, error) {
 			j++
 		}
 		l0 := x_prod[i].Copy()
-		inv := denom.Copy().Inverse()
+		inv := denom.Inverse()
 		l0.MulAssign(inv)
 		adder := samples[i].g1.ToAffine().MulFR(l0.ToRepr())
 		result = result.Add(adder)
