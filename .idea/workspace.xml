@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="639ae4d9-f724-4d12-8643-1809dde72798" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/poly.go" beforeDir="false" afterPath="$PROJECT_DIR$/poly.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/secret_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/secret_key.go" afterDir="false" />
-    </list>
+    <list default="true" id="639ae4d9-f724-4d12-8643-1809dde72798" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpke_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="52" column="1" lean-forward="true" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+            <state relative-caret-position="193">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -145,7 +142,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/poly.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="391">
@@ -401,9 +398,6 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.20 at 23h 03m 32s.xml">
-      <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestTPKE_in_github_com_DE-labtory_tpke - 2019.06.20 at 23h 03m 35s.xml">
       <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -429,6 +423,9 @@
       <configuration name="TestTPKE in github.com/DE-labtory/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
     <history-entry file="TestTPKE_in_github_com_boohyunsik_tpke - 2019.06.22 at 17h 26m 07s.xml">
+      <configuration name="TestTPKE in github.com/boohyunsik/tpke" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestTPKE_in_github_com_boohyunsik_tpke - 2019.06.22 at 18h 08m 22s.xml">
       <configuration name="TestTPKE in github.com/boohyunsik/tpke" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
@@ -1017,13 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpke_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="52" column="1" lean-forward="true" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_key.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -1042,6 +1032,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpke_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
         </state>
       </provider>
     </entry>

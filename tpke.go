@@ -35,6 +35,27 @@ func (c *CipherText) Clone() *CipherText {
 	}
 }
 
+func (c *CipherText) Equals(other *CipherText) bool {
+	if !c.U.Equal(&other.U) {
+		return false
+	}
+
+	if !c.W.Equals(&other.W) {
+		return false
+	}
+
+	if len(c.V) != len(other.V) {
+		return false
+	}
+
+	for i := range c.V {
+		if c.V[i] != other.V[i] {
+			return false
+		}
+	}
+	return true
+}
+
 type DecryptionShare struct {
 	G1 *bls.G1Projective
 }
