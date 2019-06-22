@@ -65,6 +65,19 @@ func (sks *SecretKeySet) KeyShare(i int) *SecretKeyShare {
 	}
 }
 
+func (sks *SecretKeySet) Equals (other *SecretKeySet) bool {
+	if len(sks.poly.coeff) != len(other.poly.coeff) {
+		return false
+	}
+
+	for i := range sks.poly.coeff {
+		if !sks.poly.coeff[i].Equals(other.poly.coeff[i]) {
+			return false
+		}
+	}
+	return true
+}
+
 type SecretKeyShare struct {
 	sk *SecretKey
 }
