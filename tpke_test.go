@@ -52,7 +52,7 @@ func (dm *decryptionMeeting) decrypt() ([]byte, error) {
 	return dm.pkSet.Decrypt(dm.decShares, cipherText)
 }
 
-func sendMessage(a *actor, ct *CipherText) {sk
+func sendMessage(a *actor, ct *CipherText) {
 	a.receivedMsg = ct
 }
 
