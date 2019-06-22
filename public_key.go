@@ -89,7 +89,6 @@ func (pks *PublicKeySet) KeyShare(i int) *PublicKeyShare {
 }
 
 func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) ([]byte, error) {
-	fmt.Printf("###### Decrypt - n of decShare : %d ######\n", len(ds))
 	samples := make([]*Sample, 0)
 	i := 0
 	for id, d := range ds {
@@ -97,8 +96,6 @@ func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) ([
 			fr: bls.FRReprToFR(bls.NewFRRepr(uint64(id + 1))),
 			g1: d.G1.Copy(),
 		})
-		fmt.Printf("samples[%d] fr : %v\n", i, samples[i].fr)
-		fmt.Printf("samples[%d] g1 : %v\n", i, samples[i].g1)
 		i++
 	}
 	g, err := Interpolate(pks.commitment.degree(), samples)
