@@ -110,6 +110,19 @@ func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) ([
 	return xorHash(*g, ct.V), nil
 }
 
+func (pks *PublicKeySet) Equals(other *PublicKeySet) bool {
+	if len(pks.commitment.coeff) != len(other.commitment.coeff) {
+		return false
+	}
+
+	for i := range pks.commitment.coeff {
+		if !pks.commitment.coeff[i].Equal(other.commitment.coeff[i]) {
+			return false
+		}
+	}
+	return true
+}
+
 type PublicKeyShare struct {
 	pk *PublicKey
 }
