@@ -17,7 +17,7 @@ func TestSecretKeySet(t *testing.T) {
 		},
 	}
 
-	pkSet := skSet.publicKeySet()
+	pkSet := skSet.PublicKeySet()
 	t.Logf("%v", pkSet)
 	// PASS
 

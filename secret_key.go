@@ -46,7 +46,7 @@ func (sks *SecretKeySet) threshold() int {
 	return sks.poly.degree()
 }
 
-func (sks *SecretKeySet) publicKeySet() *PublicKeySet {
+func (sks *SecretKeySet) PublicKeySet() *PublicKeySet {
 	return &PublicKeySet{
 		commitment: sks.poly.commitment(),
 	}

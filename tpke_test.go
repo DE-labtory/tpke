@@ -60,7 +60,7 @@ func setUp(t *testing.T) *playGround {
 	th := 2
 	people := 5
 	secretKeySet := RandomSecretKeySet(th)
-	publicKeySet := secretKeySet.publicKeySet()
+	publicKeySet := secretKeySet.PublicKeySet()
 
 	actors := make([]*actor, 0)
 	i := 0
