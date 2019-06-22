@@ -35,7 +35,7 @@ type SecretKeySet struct {
 	poly Poly
 }
 
-func randomSecretKeySet(threshold int) *SecretKeySet {
+func RandomSecretKeySet(threshold int) *SecretKeySet {
 	randomPoly := randomPoly(threshold + 1)
 	return &SecretKeySet{
 		poly: *randomPoly,

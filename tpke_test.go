@@ -59,7 +59,7 @@ func sendMessage(a *actor, ct *CipherText) {
 func setUp(t *testing.T) *playGround {
 	th := 2
 	people := 5
-	secretKeySet := randomSecretKeySet(th)
+	secretKeySet := RandomSecretKeySet(th)
 	publicKeySet := secretKeySet.publicKeySet()
 
 	actors := make([]*actor, 0)
