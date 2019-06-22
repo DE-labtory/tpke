@@ -3,6 +3,8 @@ package tpke
 import (
 	"github.com/leesper/go_rng"
 	"github.com/bls"
+	"math/rand"
+	"time"
 )
 
 type Poly struct {
@@ -11,9 +13,12 @@ type Poly struct {
 
 func randomPoly(degree int) *Poly {
 	coeff := make([]*bls.FR, degree)
-	rng := rng.NewUniformGenerator(int64(degree * 123123421))
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	uRng := rng.NewUniformGenerator(int64(r1.Int()))
+
 	for i := range coeff {
-		fr:= bls.NewFRRepr(uint64(rng.Int64()))
+		fr:= bls.NewFRRepr(uint64(uRng.Int64()))
 		coeff[i] = bls.FRReprToFR(fr)
 	}
 	return &Poly {

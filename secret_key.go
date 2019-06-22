@@ -75,6 +75,7 @@ func (sks *SecretKeySet) Equals (other *SecretKeySet) bool {
 			return false
 		}
 	}
+	
 	return true
 }
 
