@@ -52,7 +52,7 @@ func (sks *SecretKeySet) PublicKeySet() *PublicKeySet {
 	}
 }
 
-func (sks *SecretKeySet) keyShare(i int) *SecretKeyShare {
+func (sks *SecretKeySet) KeyShare(i int) *SecretKeyShare {
 	//fr := bls.FRReprToFR(bls.NewFRRepr(uint64(i + 1)))
 	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(1)))
 	x := bls.FRReprToFR(bls.NewFRRepr(uint64(i)))

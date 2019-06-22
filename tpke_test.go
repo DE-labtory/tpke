@@ -52,7 +52,7 @@ func (dm *decryptionMeeting) decrypt() ([]byte, error) {
 	return dm.pkSet.Decrypt(dm.decShares, cipherText)
 }
 
-func sendMessage(a *actor, ct *CipherText) {
+func sendMessage(a *actor, ct *CipherText) {sk
 	a.receivedMsg = ct
 }
 
@@ -67,7 +67,7 @@ func setUp(t *testing.T) *playGround {
 	for i < people {
 		actors = append(actors, &actor{
 			id: i,
-			skShare: secretKeySet.keyShare(i),
+			skShare: secretKeySet.KeyShare(i),
 			pkShare: publicKeySet.KeyShare(i),
 		})
 		i++

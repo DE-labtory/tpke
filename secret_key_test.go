@@ -21,9 +21,9 @@ func TestSecretKeySet(t *testing.T) {
 	t.Logf("%v", pkSet)
 	// PASS
 
-	ks0 := skSet.keyShare(0)
-	ks1 := skSet.keyShare(1)
-	ks2 := skSet.keyShare(2)
+	ks0 := skSet.KeyShare(0)
+	ks1 := skSet.KeyShare(1)
+	ks2 := skSet.KeyShare(2)
 
 	t.Logf("%v", ks0)
 	t.Logf("%v", ks1)
