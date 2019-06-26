@@ -98,6 +98,12 @@ type SecretKeyShare struct {
 	sk *SecretKey
 }
 
+func NewSecretKeyShare(sk *SecretKey) *SecretKeyShare {
+	return &SecretKeyShare {
+		sk: sk,
+	}
+}
+
 func (sks *SecretKeyShare) DecryptShare(ct *CipherText) *DecryptionShare {
 	// TODO : verify
 	return &DecryptionShare {
