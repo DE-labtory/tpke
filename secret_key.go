@@ -75,7 +75,7 @@ func (sks *SecretKeySet) Equals (other *SecretKeySet) bool {
 			return false
 		}
 	}
-	
+
 	return true
 }
 
@@ -88,4 +88,8 @@ func (sks *SecretKeyShare) DecryptShare(ct *CipherText) *DecryptionShare {
 	return &DecryptionShare {
 		G1: ct.U.ToAffine().MulFR(sks.sk.FR.ToRepr()).Copy(),
 	}
+}
+
+func (sks *SecretKeyShare) String() string {
+	return sks.sk.FR.String()
 }
