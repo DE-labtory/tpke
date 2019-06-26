@@ -2,6 +2,7 @@ package tpke
 
 import (
 	"crypto/rand"
+	"errors"
 	"fmt"
 	"github.com/bls"
 )
@@ -181,6 +182,39 @@ func (pks *PublicKeySet) Serialize() []byte {
 		}
 	}
 	return bytes
+}
+
+func NewPublicKeySetFromBytes(bytes []byte) (*PublicKeySet, error) {
+	l := len(bytes)
+	if l % 96 != 0 {
+		return nil, errors.New("the length of input must be a multiple of 96")
+	}
+	g1Arr := make([]*bls.G1Projective, 0)
+	idx := 0
+	for i := 0; i < l / 96; i++ {
+		var xArr [48]byte
+		var yArr [48]byte
+		for j := 0; j < 48; j++ {
+			xArr[j] = bytes[idx]
+			idx++
+		}
+		for j := 0; j < 48; j++ {
+			yArr[j] = bytes[idx]
+			idx++
+		}
+		fqXrepr := bls.FQReprFromBytes(xArr)
+		fqYrepr := bls.FQReprFromBytes(yArr)
+		fqX := bls.FQReprToFQ(fqXrepr)
+		fqY := bls.FQReprToFQ(fqYrepr)
+
+		g1 := bls.NewG1Affine(fqX, fqY).ToProjective()
+		g1Arr = append(g1Arr, g1)
+	}
+	return &PublicKeySet {
+		commitment: &Commitment {
+			coeff: g1Arr,
+		},
+	}, nil
 }
 
 type PublicKeyShare struct {
