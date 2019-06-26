@@ -133,6 +133,30 @@ func (pks *PublicKeySet) Decrypt(ds map[int]*DecryptionShare, ct *CipherText) ([
 	return xorHash(*g, ct.V), nil
 }
 
+func (pks *PublicKeySet) DecryptUsingStringMap(ds map[string]*DecryptionShare, ct *CipherText) ([]byte, error) {
+	samples := make([]*Sample, 0)
+	i := 0
+	for id, d := range ds {
+		fr, err := bls.FRReprFromString(id, 10)
+		if err != nil {
+			return nil, err
+		}
+		samples = append(samples, &Sample {
+			fr: bls.FRReprToFR(fr),
+			g1: d.G1.Copy(),
+		})
+		i++
+	}
+
+	g, err := Interpolate(pks.commitment.degree(), samples)
+	fmt.Printf("g: %v\n", g)
+	if err != nil {
+		return nil, err
+	}
+
+	return xorHash(*g, ct.V), nil
+}
+
 func (pks *PublicKeySet) Equals(other *PublicKeySet) bool {
 	if len(pks.commitment.coeff) != len(other.commitment.coeff) {
 		return false
