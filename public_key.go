@@ -58,6 +58,28 @@ func (p *PublicKey) Serialize() [96]byte {
 	return p.G1.ToAffine().SerializeBytes()
 }
 
+func (p *PublicKey) Equals(other *PublicKey) bool {
+	return p.G1.Equal(other.G1)
+}
+
+func NewPublicKeyFromBytes(bytes [96]byte) *PublicKey {
+	var b [48]byte
+	for i := range b {
+		b[i] = bytes[i]
+	}
+	x := bls.FQReprFromBytes(b)
+
+	for i := range b {
+		b[i] = bytes[i + 48]
+	}
+	y := bls.FQReprFromBytes(b)
+
+	g1Affine := bls.NewG1Affine(bls.FQReprToFQ(x), bls.FQReprToFQ(y))
+	return &PublicKey {
+		G1: g1Affine.ToProjective(),
+	}
+}
+
 type PublicKeySet struct {
 	commitment *Commitment
 }
