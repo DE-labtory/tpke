@@ -120,6 +120,19 @@ func (pks *PublicKeySet) Equals(other *PublicKeySet) bool {
 	return true
 }
 
+func (pks *PublicKeySet) Marshall() []byte {
+	bytes := make([]byte, 0)
+	for i := range pks.commitment.coeff {
+		g := pks.commitment.coeff[i]
+		affine := g.ToAffine()
+		serial := affine.SerializeBytes()
+		for j := range serial {
+			bytes = append(bytes, serial[j])
+		}
+	}
+	return bytes
+}
+
 type PublicKeyShare struct {
 	pk *PublicKey
 }
