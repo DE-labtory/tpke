@@ -31,6 +31,21 @@ func (s *SecretKey) Decrypt(cipher *CipherText) []byte {
 	return d
 }
 
+func (s *SecretKey) Serialize() [32]byte {
+	return s.FR.Bytes()
+}
+
+func NewSecretKeyFromBytes(bytes [32]byte) *SecretKey {
+	frRepr := bls.FRReprFromBytes(bytes)
+	return &SecretKey {
+		FR: bls.FRReprToFR(frRepr),
+	}
+}
+
+func (s *SecretKey) Equals(other *SecretKey) bool {
+	return s.FR.Equals(other.FR)
+}
+
 type SecretKeySet struct {
 	poly Poly
 }

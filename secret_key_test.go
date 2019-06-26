@@ -29,3 +29,14 @@ func TestSecretKeySet(t *testing.T) {
 	t.Logf("%v", ks1)
 	t.Logf("%v", ks2)
 }
+
+func TestSecretKey_Serialize(t *testing.T) {
+	sk := randomSecretKey(100)
+	serial := sk.Serialize()
+
+	sk2 := NewSecretKeyFromBytes(serial)
+
+	if !sk.Equals(sk2) {
+		t.Fatalf("test failed.")
+	}
+}
