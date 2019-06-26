@@ -54,6 +54,10 @@ func (p *PublicKey) FromBytes(bytes []byte) {
 
 }
 
+func (p *PublicKey) Serialize() [96]byte {
+	return p.G1.ToAffine().SerializeBytes()
+}
+
 type PublicKeySet struct {
 	commitment *Commitment
 }
@@ -120,7 +124,7 @@ func (pks *PublicKeySet) Equals(other *PublicKeySet) bool {
 	return true
 }
 
-func (pks *PublicKeySet) Marshall() []byte {
+func (pks *PublicKeySet) Serialize() []byte {
 	bytes := make([]byte, 0)
 	for i := range pks.commitment.coeff {
 		g := pks.commitment.coeff[i]
