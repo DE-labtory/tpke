@@ -179,7 +179,9 @@ func TestEncrypt(t *testing.T) {
 
 func randomSecretKey(n int) *SecretKey {
 
-	fr := bls.FRReprToFR(bls.NewFRRepr(uint64(n)))
+	//fr := bls.FRReprToFR(bls.NewFRRepr(uint64(n)))
+
+	fr, _ := bls.RandFR(rand.Reader)
 
 	//frRepr := &bls.FRRepr{3140105163220197741, 15199066853698796999, 617359497624618578, 6843342860022209944}
 

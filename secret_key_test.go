@@ -32,6 +32,8 @@ func TestSecretKeySet(t *testing.T) {
 
 func TestSecretKey_Serialize(t *testing.T) {
 	sk := randomSecretKey(100)
+	t.Logf("%v", sk)
+	t.Logf("%v", sk.Serialize())
 	serial := sk.Serialize()
 
 	sk2 := NewSecretKeyFromBytes(serial)

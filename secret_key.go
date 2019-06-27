@@ -114,3 +114,13 @@ func (sks *SecretKeyShare) DecryptShare(ct *CipherText) *DecryptionShare {
 func (sks *SecretKeyShare) String() string {
 	return sks.sk.FR.String()
 }
+
+func (sks *SecretKeyShare) Serialize() [32]byte {
+	return sks.sk.Serialize()
+}
+
+func NewSecretKeyShareFromBytes(bytes [32]byte) *SecretKeyShare {
+	return &SecretKeyShare {
+		sk: NewSecretKeyFromBytes(bytes),
+	}
+}
