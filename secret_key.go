@@ -117,6 +117,19 @@ func (sks *SecretKeySet) KeyShare(i int) *SecretKeyShare {
 	}
 }
 
+func (sks *SecretKeySet) KeyShareUsingString(s string) *SecretKeyShare {
+	frRepr, _ := bls.FRReprFromString(s, 10)
+	fr := bls.FRReprToFR(frRepr)
+	x := bls.FRReprToFR(frRepr)
+	fr.AddAssign(x)
+	eval := sks.poly.evaluate(*fr)
+	return &SecretKeyShare {
+		sk: &SecretKey {
+			FR: eval,
+		},
+	}
+}
+
 func (sks *SecretKeySet) Equals (other *SecretKeySet) bool {
 	if len(sks.poly.coeff) != len(other.poly.coeff) {
 		return false
