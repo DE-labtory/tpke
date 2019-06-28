@@ -61,6 +61,17 @@ func (sks *SecretKeySet) threshold() int {
 	return sks.poly.degree()
 }
 
+func (sks *SecretKeySet) Serialize() []byte {
+	ret := make([]byte, 0)
+	for _, c := range sks.poly.coeff {
+		b := c.Bytes()
+		for i := 0; i < len(b); i++ {
+			ret = append(ret, b[i])
+		}
+	}
+	return ret
+}
+
 func (sks *SecretKeySet) PublicKeySet() *PublicKeySet {
 	return &PublicKeySet{
 		commitment: sks.poly.commitment(),
