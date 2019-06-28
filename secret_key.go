@@ -1,6 +1,7 @@
 package tpke
 
 import (
+	"errors"
 	"github.com/bls"
 )
 
@@ -55,6 +56,31 @@ func RandomSecretKeySet(threshold int) *SecretKeySet {
 	return &SecretKeySet{
 		poly: *randomPoly,
 	}
+}
+
+func NewSecretKeySetFromBytes(bytes []byte) (*SecretKeySet, error) {
+	l := len(bytes)
+	if l % 32 != 0 {
+		return nil, errors.New("length of byte must be a multiple of 32")
+	}
+
+	frs := make([]*bls.FR, 0)
+	idx := 0
+	for i := 0; i < l / 32; i++ {
+		var b [32]byte
+		for j := 0; j < 32; j++ {
+			b[j] = bytes[idx]
+			idx++
+		}
+		fr := bls.FRReprFromBytes(b)
+		frs = append(frs, bls.FRReprToFR(fr))
+	}
+
+	return &SecretKeySet {
+		poly: Poly {
+			coeff: frs,
+		},
+	}, nil
 }
 
 func (sks *SecretKeySet) threshold() int {
