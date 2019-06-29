@@ -38,6 +38,56 @@ func (c *CipherText) Serialize() []byte {
 	return ret
 }
 
+func NewCipherTextFromBytes(bytes []byte) *CipherText {
+	uSerial := bytes[0:96]
+	wSerial := bytes[96:288]
+	vSerial := bytes[288:]
+
+	var uX [48]byte
+	var uY [48]byte
+	for i:=0; i<48; i++ {
+		uX[i] = uSerial[i]
+	}
+	for i:=0; i<48; i++ {
+		uY[i] = uSerial[i + 48]
+	}
+	uXfq := bls.FQReprToFQ(bls.FQReprFromBytes(uX))
+	uYfq := bls.FQReprToFQ(bls.FQReprFromBytes(uY))
+	u := bls.NewG1Affine(uXfq, uYfq).ToProjective()
+
+	var wXc0 [48]byte
+	var wXc1 [48]byte
+	var wYc0 [48]byte
+	var wYc1 [48]byte
+	for i:=0; i<48; i++ {
+		wXc0[i] = wSerial[i]
+	}
+	for i:=0; i<48; i++ {
+		wXc1[i] = wSerial[i+48]
+	}
+	for i:=0; i<48; i++ {
+		wYc0[i] = wSerial[i+96]
+	}
+	for i:=0; i<48; i++ {
+		wYc1[i] = wSerial[i+144]
+	}
+	wXc0fq := bls.FQReprToFQ(bls.FQReprFromBytes(wXc0))
+	wXc1fq := bls.FQReprToFQ(bls.FQReprFromBytes(wXc1))
+	wYc0fq := bls.FQReprToFQ(bls.FQReprFromBytes(wYc0))
+	wYc1fq := bls.FQReprToFQ(bls.FQReprFromBytes(wYc1))
+
+	wXfq2 := bls.NewFQ2(wXc0fq, wXc1fq)
+	wYfq2 := bls.NewFQ2(wYc0fq, wYc1fq)
+
+	w := bls.NewG2Affine(wXfq2, wYfq2).ToProjective()
+
+	return &CipherText {
+		U: *u,
+		V: vSerial,
+		W: *w,
+	}
+}
+
 func (c *CipherText) Clone() *CipherText {
 	cloneV := make([]byte, len(c.V))
 	for i := range cloneV {

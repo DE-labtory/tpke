@@ -320,3 +320,25 @@ func TestInterpolate2(t *testing.T) {
 	t.Logf("%v", g)
 	// PASS
 }
+
+func TestCipherText_Serialize(t *testing.T) {
+	randU, _ := bls.RandG1(rand.Reader)
+	randW, _ := bls.RandG2(rand.Reader)
+	randV := make([]byte, 10)
+	for i:=0; i<10; i++ {
+		randV[i] = byte(i)
+	}
+
+	cipher := &CipherText {
+		U: *randU,
+		V: randV,
+		W: *randW,
+	}
+
+	serial := cipher.Serialize()
+	cipher2 := NewCipherTextFromBytes(serial)
+
+	if !cipher.Equals(cipher2) {
+		t.Fatalf("cipher texts are different")
+	}
+}
