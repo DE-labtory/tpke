@@ -22,6 +22,22 @@ func (c *CipherText) Hash() {
 
 }
 
+func (c *CipherText) Serialize() []byte {
+	ret := make([]byte, 0)
+	uSerial := c.U.ToAffine().SerializeBytes()
+	wSerial := c.W.ToAffine().SerializeBytes()
+	for i:=0; i<len(uSerial); i++ {
+		ret = append(ret, uSerial[i])
+	}
+	for i:=0; i<len(wSerial); i++ {
+		ret = append(ret, wSerial[i])
+	}
+	for i:=0; i<len(c.V); i++ {
+		ret = append(ret, c.V[i])
+	}
+	return ret
+}
+
 func (c *CipherText) Clone() *CipherText {
 	cloneV := make([]byte, len(c.V))
 	for i := range cloneV {
