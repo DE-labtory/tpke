@@ -338,6 +338,14 @@ func TestCipherText_Serialize(t *testing.T) {
 	serial := cipher.Serialize()
 	cipher2 := NewCipherTextFromBytes(serial)
 
+	t.Logf("cipher U : %v", cipher.U)
+	t.Logf("cipher V : %v", cipher.V)
+	t.Logf("cipher W : %v", cipher.W)
+
+	t.Logf("cipher2 U : %v", cipher2.U)
+	t.Logf("cipher2 V : %v", cipher2.V)
+	t.Logf("cipher2 W : %v", cipher2.W)
+
 	if !cipher.Equals(cipher2) {
 		t.Fatalf("cipher texts are different")
 	}

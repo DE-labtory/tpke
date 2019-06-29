@@ -1,6 +1,7 @@
 package tpke
 
 import (
+	"fmt"
 	"github.com/bls"
 )
 
@@ -120,6 +121,10 @@ func (c *CipherText) Equals(other *CipherText) bool {
 		}
 	}
 	return true
+}
+
+func (c *CipherText) String() string {
+	return fmt.Sprintf("U : %v, V : %v, W : %v", c.U, c.V, c.W)
 }
 
 type DecryptionShare struct {
