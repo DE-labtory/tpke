@@ -88,7 +88,7 @@ func TestTPKE(t *testing.T) {
 	david := playGround.actors[3].id
 	eric := playGround.actors[4].id
 
-	msg := []byte("pizza pizza")
+	msg := []byte("pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza pizza")
 	t.Logf("msg : %v", msg)
 	cipherText, err := pk.Encrypt(msg)
 

@@ -25,9 +25,9 @@ func (p *PublicKey) Verify(sig *Signature, msg []byte) bool {
 
 func (p *PublicKey) Encrypt(msg []byte) (*CipherText, error) {
 
-	if len(msg) > 32 {
-		return nil, nil
-	}
+	//if len(msg) > 32 {
+	//	return nil, nil
+	//}
 
 	r, err := bls.RandFR(rand.Reader)
 	if err != nil {

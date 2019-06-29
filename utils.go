@@ -76,7 +76,7 @@ func xorHash(g1 bls.G1Projective, msg []byte) []byte {
 	hashedG1 := hash.Sum(nil)
 	output := make([]byte, len(msg))
 	for i := range output {
-		output[i] = msg[i] ^ hashedG1[i]
+		output[i] = msg[i] ^ hashedG1[i % 32]
 	}
 	return output
 }
