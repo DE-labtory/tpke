@@ -131,6 +131,21 @@ type DecryptionShare struct {
 	G1 *bls.G1Projective
 }
 
-func SetUp(t, p int) {
+func (ds *DecryptionShare) Serialize() [96]byte {
+	return ds.G1.ToAffine().SerializeBytes()
+}
 
+func NewDecryptionShareFromBytes(bytes [96]byte) *DecryptionShare {
+	var x, y [48]byte
+	for i :=0; i<48; i++ {
+		x[i] = bytes[i]
+		y[i] = bytes[i+48]
+	}
+	fqX := bls.FQReprToFQ(bls.FQReprFromBytes(x))
+	fqY := bls.FQReprToFQ(bls.FQReprFromBytes(y))
+
+	g1 := bls.NewG1Affine(fqX, fqY).ToProjective()
+	return &DecryptionShare{
+		G1: g1,
+	}
 }
