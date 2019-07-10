@@ -2,7 +2,7 @@ package tpke
 
 import (
 	"fmt"
-	"github.com/bls"
+	"github.com/DE-labtory/tpke/bls"
 )
 
 type CipherText struct {

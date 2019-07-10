@@ -2,7 +2,7 @@ package tpke
 
 import (
 	"errors"
-	"github.com/bls"
+	"github.com/DE-labtory/tpke/bls"
 )
 
 type SecretKey struct {

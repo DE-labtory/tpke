@@ -1,7 +1,7 @@
 package tpke
 
 import (
-	"github.com/bls"
+	"github.com/DE-labtory/tpke/bls"
 	"testing"
 )
 

@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/binary"
-	"github.com/bls"
+	"github.com/DE-labtory/tpke/bls"
 	"github.com/leesper/go_rng"
 	"math/big"
 	"testing"

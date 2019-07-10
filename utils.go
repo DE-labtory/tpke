@@ -3,7 +3,7 @@ package tpke
 import (
 	"encoding/binary"
 	"errors"
-	"github.com/bls"
+	"github.com/DE-labtory/tpke/bls"
 	"golang.org/x/crypto/blake2b"
 	"golang.org/x/crypto/sha3"
 )
